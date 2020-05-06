@@ -74,8 +74,8 @@ const App = () => {
           style={{ height: "100%" }}
           verticalAlign="middle"
         >
-          <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h2" color="teal" textAlign="center">
+          <Grid.Column style={{ maxWidth: 350 }}>
+            <Header as="h3" color="teal" textAlign="center">
               Login
             </Header>
             <Form size="large" onSubmit={onSubmitHandler}>
