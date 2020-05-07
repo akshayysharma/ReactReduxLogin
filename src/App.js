@@ -118,7 +118,7 @@ const App = () => {
                   </div>
                 ) : (
                   <div
-                    style={{ color: "red", margin: "10px", fontSize: "1.5rem" }}
+                    style={{ color: "red", margin: "5px", fontSize: "1.5rem" }}
                   >
                     {eError}
                     {pError}
