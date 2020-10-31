@@ -1,64 +1,56 @@
-import React, { useState } from "react";
-import { login, error, logout } from "./Action";
-import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
+import React, { useState } from "react"
+import { login, error, logout } from "./Action"
+import { useSelector, useDispatch } from "react-redux"
+import { Redirect } from "react-router-dom"
+import { Button, Form, Grid, Header, Segment } from "semantic-ui-react"
 
 const App = () => {
-  const [uemail, Setuemail] = useState("");
-  const [upassword, Setupassword] = useState("");
-  const [eError, SeteError] = useState("");
-  const [pError, SetpError] = useState("");
+  const [uemail, Setuemail] = useState("")
+  const [upassword, Setupassword] = useState("")
+  const [eError, SeteError] = useState("")
+  const [pError, SetpError] = useState("")
 
-  const userState = useSelector(state => state.login.username);
-  const passState = useSelector(state => state.login.password);
-  const isLogged = useSelector(state => state.login.isLoggedIn);
-  const isMessage = useSelector(state => state.login.message);
-  const dispatch = useDispatch();
+  const userState = useSelector(state => state.login.username)
+  const passState = useSelector(state => state.login.password)
+  const isLogged = useSelector(state => state.login.isLoggedIn)
+  const isMessage = useSelector(state => state.login.message)
+  const dispatch = useDispatch()
 
   const onSubmitHandler = e => {
-    e.preventDefault();
-    const showValidation = validation();
+    e.preventDefault()
+    const showValidation = validation()
     if (showValidation) {
       if (uemail === userState && upassword === passState) {
-        localStorage.setItem("token", "anyRandomString");
-        dispatch(login());
-      } else {
-        dispatch(error());
-      }
+        localStorage.setItem("token", "anyRandomString")
+        dispatch(login())
+      } else dispatch(error())
+    
     }
   };
-  const validation = () => {
-    if (uemail === "") {
-      SeteError("Please enter Email!");
-    }
+  const validation = () =>{
+    if (uemail === "") SeteError("Please enter Email!")
 
-    if (upassword === "") {
-      SetpError("Please enter Password!");
-    }
+    if (upassword === "") SetpError("Please enter Password!")
 
-    if (uemail === "" || upassword === "") {
-      return false;
-    } else {
-      return true;
-    }
-  };
+    if (uemail === "" || upassword === "") return false
+    else return true
+  }
 
   const onChangeHandlermail = e => {
-    Setuemail(e.target.value);
-    SeteError("");
-    SetpError("");
-    dispatch(logout());
+    Setuemail(e.target.value)
+    SeteError("")
+    SetpError("")
+    dispatch(logout())
   };
   const onChangeHandlerpass = e => {
-    Setupassword(e.target.value);
-    SeteError("");
-    SetpError("");
-    dispatch(logout());
+    Setupassword(e.target.value)
+    SeteError("")
+    SetpError("")
+    dispatch(logout())
   };
 
   if (isLogged) {
-    return <Redirect to="/admin" />;
+    return <Redirect to="/admin" />
   }
   return (
     <div>
@@ -133,4 +125,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App
